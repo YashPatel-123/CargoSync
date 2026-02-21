@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Registry - Asset Management</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="registry.css">
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-truck-fast"></i> FleetFlow
+        </div>
+        <div class="nav-links">
+            <a href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="#" class="active"><i class="fa-solid fa-warehouse"></i> Vehicle Registry</a>
+            <a href="#"><i class="fa-solid fa-truck-ramp-box"></i> Trip Dispatcher</a>
+            <a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Maintenance & Service Logs</a>
+            <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Completed Trip, Expense & Fuel Logging</a>
+            <a href="#"><i class="fa-solid fa-user-shield"></i> Driver Performance & Safety Profiles</a>
+            <a href="#"><i class="fa-solid fa-chart-pie"></i> Operational Analytics & Financial Reports</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        
+        <div class="header">
+            <h2>Vehicle Registry (Asset Management)</h2>
+            <p>CRUD operations for physical assets. Manage fleet inventory and status.</p>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>Total Fleet</h4>
+                <div class="value">24</div>
+            </div>
+            <div class="stat-card" style="border-left-color: var(--status-active-text);">
+                <h4>Active</h4>
+                <div class="value">20</div>
+            </div>
+            <div class="stat-card" style="border-left-color: var(--status-maintenance-text);">
+                <h4>In Maintenance</h4>
+                <div class="value">3</div>
+            </div>
+            <div class="stat-card" style="border-left-color: var(--status-retired-text);">
+                <h4>Retired</h4>
+                <div class="value">1</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            
+            <!-- LEFT COLUMN: Add/Edit Vehicle Form -->
+            <div class="left-column">
+                <div class="card">
+                    <h3><i class="fa-solid fa-plus-circle"></i> Add New Vehicle</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Vehicle Name / Model</label>
+                            <input type="text" class="form-control" placeholder="e.g., Ford Cargo X">
+                        </div>
+
+                        <div class="form-group">
+                            <label>License Plate (Unique ID)</label>
+                            <input type="text" class="form-control" placeholder="e.g., ABC-1234">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vehicle Type</label>
+                            <select class="form-control">
+                                <option>Heavy Truck</option>
+                                <option>Delivery Van</option>
+                                <option>Bike/Courier</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Max Load Capacity</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="number" class="form-control" placeholder="e.g., 1000">
+                                <select class="form-control" style="width: 80px;">
+                                    <option>kg</option>
+                                    <option>tons</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Current Odometer (km)</label>
+                            <input type="number" class="form-control" placeholder="e.g., 45000">
+                        </div>
+
+                        <!-- Out of Service Toggle -->
+                        <div class="toggle-container">
+                            <span class="toggle-label">Out of Service (Retired)</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa-solid fa-save"></i> Add Vehicle
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Vehicle Registry Table -->
+            <div class="right-column">
+                <div class="card">
+                    <h3><i class="fa-solid fa-warehouse"></i> Fleet Registry</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Vehicle</th>
+                                    <th>License Plate</th>
+                                    <th>Type</th>
+                                    <th>Max Load</th>
+                                    <th>Odometer</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Vehicle 1 -->
+                                <tr>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-icon"><i class="fa-solid fa-truck"></i></div>
+                                            <div>
+                                                <strong>TRK-001</strong><br>
+                                                <small style="color: var(--text-light);">Ford Cargo</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>ABC-1234</td>
+                                    <td>Heavy Truck</td>
+                                    <td>1000 kg</td>
+                                    <td>125,000 km</td>
+                                    <td><span class="status-badge badge-active">Active</span></td>
+                                    <td>
+                                        <button class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Vehicle 2 -->
+                                <tr>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-icon"><i class="fa-solid fa-truck"></i></div>
+                                            <div>
+                                                <strong>TRK-012</strong><br>
+                                                <small style="color: var(--text-light);">Volvo FH</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>XYZ-9876</td>
+                                    <td>Heavy Truck</td>
+                                    <td>2000 tons</td>
+                                    <td>89,000 km</td>
+                                    <td><span class="status-badge badge-maintenance">In Shop</span></td>
+                                    <td>
+                                        <button class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Vehicle 3 -->
+                                <tr>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-icon"><i class="fa-solid fa-van-shuttle"></i></div>
+                                            <div>
+                                                <strong>VAN-042</strong><br>
+                                                <small style="color: var(--text-light);">Mercedes Sprinter</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>DEF-5678</td>
+                                    <td>Delivery Van</td>
+                                    <td>500 kg</td>
+                                    <td>67,500 km</td>
+                                    <td><span class="status-badge badge-active">Active</span></td>
+                                    <td>
+                                        <button class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Vehicle 4 -->
+                                <tr>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-icon"><i class="fa-solid fa-bicycle"></i></div>
+                                            <div>
+                                                <strong>BIKE-09</strong><br>
+                                                <small style="color: var(--text-light);">Courier Bike</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>GHI-9012</td>
+                                    <td>Bike</td>
+                                    <td>20 kg</td>
+                                    <td>15,200 km</td>
+                                    <td><span class="status-badge badge-active">Active</span></td>
+                                    <td>
+                                        <button class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                                <!-- Vehicle 5 (Retired) -->
+                                <tr style="background-color: #fafafa; opacity: 0.7;">
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-icon" style="background: #eee; color: #999;"><i class="fa-solid fa-truck"></i></div>
+                                            <div>
+                                                <strong>TRK-099</strong><br>
+                                                <small style="color: #999;">Old Hino</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>LMN-4567</td>
+                                    <td>Heavy Truck</td>
+                                    <td>800 kg</td>
+                                    <td>450,000 km</td>
+                                    <td><span class="status-badge badge-retired">Retired</span></td>
+                                    <td>
+                                        <button class="action-btn btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
