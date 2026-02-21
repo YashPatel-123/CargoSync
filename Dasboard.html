@@ -1,290 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
     <title>Fleet Management Dashboard</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #3498db;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-color: #333;
-            --text-light: #7f8c8d;
-
-            /* KPI Colors */
-            --kpi-green: #27ae60;
-            --kpi-red: #c0392b;
-            --kpi-blue: #2980b9;
-            --kpi-orange: #d35400;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar Styles */
-        .sidebar {
-            width: 250px;
-            background-color: var(--primary-color);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            position: fixed;
-            height: 100%;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            padding: 15px 10px;
-            display: block;
-            border-radius: 5px;
-            margin-bottom: 5px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: 250px;
-            /* Matches sidebar width */
-            padding: 30px;
-            width: 100%;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .header h2 {
-            color: var(--primary-color);
-        }
-
-        /* Filter Section */
-        .filters-container {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .filters-container label {
-            font-weight: 600;
-            color: var(--text-light);
-            margin-right: 5px;
-        }
-
-        select {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
-            color: var(--text-color);
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* KPI Grid */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .kpi-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-left: 5px solid transparent;
-            transition: transform 0.2s;
-        }
-
-        .kpi-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .kpi-info h3 {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .kpi-info .value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .kpi-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        /* Specific KPI Styling */
-        .kpi-active {
-            border-left-color: var(--kpi-green);
-        }
-
-        .kpi-active .kpi-icon {
-            background: #eafaf1;
-            color: var(--kpi-green);
-        }
-
-        .kpi-maintenance {
-            border-left-color: var(--kpi-red);
-        }
-
-        .kpi-maintenance .kpi-icon {
-            background: #fdedec;
-            color: var(--kpi-red);
-        }
-
-        .kpi-util {
-            border-left-color: var(--kpi-blue);
-        }
-
-        .kpi-util .kpi-icon {
-            background: #ebf5fb;
-            color: var(--kpi-blue);
-        }
-
-        .kpi-cargo {
-            border-left-color: var(--kpi-orange);
-        }
-
-        .kpi-cargo .kpi-icon {
-            background: #fbe6d5;
-            color: var(--kpi-orange);
-        }
-
-        /* Data Table (For visual context) */
-        .recent-section {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .recent-section h3 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            color: var(--text-light);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .status-trip {
-            background: #eafaf1;
-            color: var(--kpi-green);
-        }
-
-        .status-shop {
-            background: #fdedec;
-            color: var(--kpi-red);
-        }
-
-        .status-idle {
-            background: #f2f3f4;
-            color: var(--text-light);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-
-            /* Hide sidebar on mobile */
-            .main-content {
-                margin-left: 0;
-            }
-
-            .kpi-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .filters-container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-    </style>
+    
 </head>
-
 <body>
 
     <!-- Sidebar Navigation -->
@@ -294,23 +18,31 @@
         </div>
         <div class="nav-links">
             <a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            <a href="#"><i class="fa-solid fa-car"></i> Vehicles</a>
-            <a href="#"><i class="fa-solid fa-box-open"></i> Shipments</a>
-            <a href="#"><i class="fa-solid fa-users"></i> Drivers</a>
-            <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+            
+            <!-- New Menu Items -->
+            <a href="#"><i class="fa-solid fa-warehouse"></i> Vehicle Registry</a>
+            
+            <a href="#"><i class="fa-solid fa-truck-ramp-box"></i> Trip Dispatcher & Management</a>
+            
+            <a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Maintenance & Service Logs</a>
+            
+            <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Completed Trip, Expense & Fuel Logging</a>
+            
+            <a href="#"><i class="fa-solid fa-user-shield"></i> Driver Performance & Safety Profiles</a>
+            
+            <a href="#"><i class="fa-solid fa-chart-pie"></i> Operational Analytics & Financial Reports</a>
         </div>
     </div>
 
     <!-- Main Content Area -->
     <div class="main-content">
-
+        
         <!-- Header -->
         <div class="header">
             <h2>Operations Dashboard</h2>
             <div class="user-profile">
                 <span>Admin User</span>
-                <i class="fa-solid fa-circle-user"
-                    style="font-size: 1.5rem; color: var(--secondary-color); margin-left: 10px;"></i>
+                <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; color: var(--secondary-color); margin-left: 10px;"></i>
             </div>
         </div>
 
@@ -346,16 +78,15 @@
                     <option value="west">West</option>
                 </select>
             </div>
-
-            <button
-                style="margin-left: auto; padding: 10px 20px; background: var(--accent-color); color: white; border: none; border-radius: 5px; cursor: pointer;">
+            
+            <button style="margin-left: auto; padding: 10px 20px; background: var(--accent-color); color: white; border: none; border-radius: 5px; cursor: pointer;">
                 Apply Filters
             </button>
         </div>
 
         <!-- KPI Cards -->
         <div class="kpi-grid">
-
+            
             <!-- Active Fleet KPI -->
             <div class="kpi-card kpi-active">
                 <div class="kpi-info">
@@ -406,7 +137,7 @@
 
         </div>
 
-        <!-- Recent Data Table (Visualizing the list) -->
+        <!-- Recent Data Table -->
         <div class="recent-section">
             <h3>Recent Vehicle Status</h3>
             <table>
@@ -436,4 +167,22 @@
                     </tr>
                     <tr>
                         <td>TRK-012</td>
-                        <td>
+                        <td>Heavy Truck</td>
+                        <td>Mike Ross</td>
+                        <td>West</td>
+                        <td><span class="status-badge status-shop">In Shop</span></td>
+                    </tr>
+                    <tr>
+                        <td>BIKE-09</td>
+                        <td>Bike/Courier</td>
+                        <td>Jessica Lee</td>
+                        <td>South</td>
+                        <td><span class="status-badge status-trip">On Trip</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>
