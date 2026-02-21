@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="perfomance.css">
+    <title>Driver Performance & Safety Profiles</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-truck-fast"></i> FleetFlow
+        </div>
+        <div class="nav-links">
+            <a href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="#"><i class="fa-solid fa-warehouse"></i> Vehicle Registry</a>
+            <a href="#"><i class="fa-solid fa-truck-ramp-box"></i> Trip Dispatcher</a>
+            <a href="#"><i class="fa-solid fa-screwdriver-wrench"></i> Maintenance & Service Logs</a>
+            <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Completed Trip, Expense & Fuel Logging</a>
+            <a href="#" class="active"><i class="fa-solid fa-user-shield"></i> Driver Performance & Safety Profiles</a>
+            <a href="#"><i class="fa-solid fa-chart-pie"></i> Operational Analytics & Financial Reports</a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        
+        <div class="header">
+            <h2>Driver Performance & Safety Profiles</h2>
+            <p>Human resource and compliance management.</p>
+        </div>
+
+        <!-- Compliance Logic Banner -->
+        <div class="compliance-banner">
+            <i class="fa-solid fa-triangle-exclamation"></i> 
+            <strong>Compliance Logic:</strong> Drivers with expired licenses are <strong>blocked</strong> from trip assignment.
+        </div>
+
+        <div class="dashboard-grid">
+            
+            <!-- LEFT COLUMN: Add/Edit Driver Form -->
+            <div class="left-column">
+                <div class="card">
+                    <h3><i class="fa-solid fa-id-card"></i> Driver Registry</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label>License Number</label>
+                            <input type="text" class="form-control" placeholder="DL-12345678">
+                        </div>
+
+                        <div class="form-group">
+                            <label>License Expiry Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Current Status</label>
+                            <select class="form-control">
+                                <option>On Duty</option>
+                                <option>Off Duty</option>
+                                <option>Suspended</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Assigned Vehicle</label>
+                            <select class="form-control">
+                                <option>TRK-001</option>
+                                <option>VAN-042</option>
+                                <option>Unassigned</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Driver Table -->
+            <div class="right-column">
+                <div class="card">
+                    <h3><i class="fa-solid fa-users"></i> Driver Performance & Status</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Driver</th>
+                                    <th>Status</th>
+                                    <th>License Expiry</th>
+                                    <th>Safety Score</th>
+                                    <th>Trips Completed</th>
+                                    <th>Compliance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Driver 1: Active & Safe -->
+                                <tr>
+                                    <td>
+                                        <div class="driver-profile">
+                                            <div class="driver-avatar">JD</div>
+                                            <div>John Doe</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-onduty">On Duty</span></td>
+                                    <td>2025-12-31</td>
+                                    <td><span class="score score-high">95/100</span></td>
+                                    <td>
+                                        124
+                                        <div class="progress-bar"><div class="progress-fill" style="width: 95%"></div></div>
+                                    </td>
+                                    <td><span class="status-badge badge-onduty" style="background:#eee; color:#27ae60;">Valid</span></td>
+                                </tr>
+
+                                <!-- Driver 2: Off Duty -->
+                                <tr>
+                                    <td>
+                                        <div class="driver-profile">
+                                            <div class="driver-avatar">SS</div>
+                                            <div>Sarah Smith</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-offduty">Off Duty</span></td>
+                                    <td>2024-08-15</td>
+                                    <td><span class="score score-high">88/100</span></td>
+                                    <td>
+                                        85
+                                        <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+                                    </td>
+                                    <td><span class="status-badge badge-onduty" style="background:#eee; color:#27ae60;">Valid</span></td>
+                                </tr>
+
+                                <!-- Driver 3: License Expired (Blocked) -->
+                                <tr style="background-color: #fff5f5;">
+                                    <td>
+                                        <div class="driver-profile">
+                                            <div class="driver-avatar" style="background:#c0392b;">MR</div>
+                                            <div>Mike Ross</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-onduty">On Duty</span></td>
+                                    <td>
+                                        2023-01-10
+                                        <div class="license-expired"><i class="fa-solid fa-ban"></i> EXPIRED</div>
+                                    </td>
+                                    <td><span class="score score-med">72/100</span></td>
+                                    <td>
+                                        42
+                                        <div class="progress-bar"><div class="progress-fill" style="width: 42%; background:#c0392b;"></div></div>
+                                    </td>
+                                    <td><span class="status-badge badge-suspended">Blocked</span></td>
+                                </tr>
+
+                                <!-- Driver 4: Suspended -->
+                                <tr>
+                                    <td>
+                                        <div class="driver-profile">
+                                            <div class="driver-avatar" style="background:#7f8c8d;">ED</div>
+                                            <div>Emily Davis</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="status-badge badge-suspended">Suspended</span></td>
+                                    <td>2026-05-20</td>
+                                    <td><span class="score score-low">45/100</span></td>
+                                    <td>
+                                        12
+                                        <div class="progress-bar"><div class="progress-fill" style="width: 12%; background:#c0392b;"></div></div>
+                                    </td>
+                                    <td><span class="status-badge badge-offduty" style="background:#eee; color:#7f8c8d;">Valid</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Legend / Guide -->
+                <div class="card" style="padding: 15px; background-color: #f8f9fa;">
+                    <small>
+                        <strong>Status Guide:</strong> 
+                        <span class="status-badge badge-onduty" style="margin-right:5px;">On Duty</span> 
+                        <span class="status-badge badge-offduty" style="margin-right:5px;">Off Duty</span> 
+                        <span class="status-badge badge-suspended">Suspended</span>
+                        <br>
+                        <strong>Safety Score:</strong> Based on harsh braking, speeding incidents, and trip reviews.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
